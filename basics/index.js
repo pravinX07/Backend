@@ -3,6 +3,10 @@ import dotenv from "dotenv"
 import cors from "cors"
 import db from "./utils/db.js"
 
+// import all routes
+
+import userRoutes from "./routes/user.routes.js"
+
 dotenv.config();
 const app = express();
 app.use(cors({
@@ -17,9 +21,10 @@ const PORT = process.env.PORT || 4000;
 
 db();
 
-app.get("/",(req,res)=>{
-    res.send("Hey i am Pravin")
-})
+//user routes
+app.use("/api/v1/users", userRoutes)
+
+
 
 
 app.listen(PORT, () => {
